@@ -15,7 +15,7 @@ import java.nio.ByteBuffer;
 public class DatagramSocketServer {
     DatagramSocket socket;
     SecretNum secretNum = new SecretNum();
-
+    int num = 0;
 
     //Instàciar el socket
     public void init(int port) throws SocketException {
@@ -45,12 +45,15 @@ public class DatagramSocketServer {
     //El server retorna al client el mateix missatge que li arriba però en majúscules
     private byte[] processData(byte[] data, int lenght) {
         String msg = new String(data,0,lenght);
+
+        num ++;
         msg = msg.toUpperCase();
 
 
         System.out.println(msg);
 
-        return secretNum.comprova(msg).getBytes();
+        String xd = num + " " +  secretNum.comprova(msg);
+        return xd.getBytes();
 
 
         //Imprimir el missatge rebut i retornar-lo

@@ -49,14 +49,14 @@ public class DatagramSocketClient {
     private byte[] getDataToRequest(byte[] data, int length) {
         String rebut = new String(data,0, length);
         //Imprimeix el nom del client + el que es reb del server i demana més dades
-        System.out.print(nom+"("+rebut+")"+"> ");
+        System.out.print(rebut);
         String msg = sc.nextLine();
         return msg.getBytes();
     }
 
     //primer missatge que se li envia al server
     private byte[] getFirstRequest() {
-        System.out.println("Entra el teu nom: ");
+        System.out.println("Entra el teu numero: ");
         nom = sc.nextLine();
         return nom.getBytes();
     }
@@ -70,7 +70,7 @@ public class DatagramSocketClient {
     public static void main(String[] args) {
         DatagramSocketClient client = new DatagramSocketClient();
         try {
-            client.init("192.168.22.110",5555);
+            client.init("192.168.22.109",5555);
             client.runClient();
         } catch (IOException e) {
             e.getStackTrace();
